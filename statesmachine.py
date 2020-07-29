@@ -16,6 +16,7 @@ import _thread as thread
 from infoDownload import InfoDownload
 from infoDownload import Video
 from infoDownload import Orden
+from pytube import YouTube
 from tkinter import *
 from tkinter import messagebox
 from tkinter import Tk
@@ -63,7 +64,7 @@ def descarga(item, contador):
 
 # %%
 def readAndListLinks():
-    # archivo = open("/links.txt","r")
+   # archivo = open("/links.txt","r")
     Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
     # show an "Open" dialog box and return the path to the selected file
     archivo = askopenfile()
@@ -221,6 +222,8 @@ def buttons():
 
 
 # %%
+scriptDir = os.getcwd()
+os.chdir(scriptDir)
 ventana = Tk()  # crea el objeto
 ventana.geometry("600x500")  # tamaño de la ventana
 photo = PhotoImage(file="fondo.png")
