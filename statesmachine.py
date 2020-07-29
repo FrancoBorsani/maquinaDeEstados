@@ -9,14 +9,11 @@
 # %%
 import time
 import requests
-import pytube
 import os
+import shutil
 import getpass
 import _thread as thread
-from infoDownload import InfoDownload
-from infoDownload import Video
-from infoDownload import Orden
-from pytube import YouTube
+import youtube_dl
 from tkinter import *
 from tkinter import messagebox
 from tkinter import Tk
@@ -44,21 +41,29 @@ def createFolder():
 
 # %%
 def downloadDescription(link, contador):
-    youtube = pytube.YouTube(link)
-    listDownloads.append(InfoDownload(contador, Video(youtube.video_id, link, youtube.title,
-                                                      youtube.description,    youtube.length), youtube.streams.first().filesize))
+    ydl_opts = {}
+    listaInfo=list()
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        meta = ydl.extract_info(link, download=False) 
+        listaInfo.append('Subido por: ' + meta['uploader'])
+        listaInfo.append('Visitas: ' + str(meta['view_count']))
+        listaInfo.append('Duracion: ' + str(meta['duration']))
+        listaInfo.append('Titulo: ' +meta['title'])
+        listaInfo.append('Descripcion: '+meta['description'])
+        listDownloads.append(listaInfo)
+
     return listDownloads.pop()
 
 
 # %%
 def descarga(item, contador):
-    youtube = pytube.YouTube(item)
-    video = youtube.streams.first()
-    video.download("C:/Users/"+username+"/Desktop/Videos")
-    listDownloads.append(InfoDownload(contador, Video(youtube.video_id, item, youtube.title,
-                                                      youtube.description,    youtube.length), video.filesize))
+    ydl_opts = {}
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([item])
+    
+    #video.download("C:/Users/"+username+"/Desktop/Videos")
+    
     time.sleep(2)
-
     return True
 
 
