@@ -57,7 +57,9 @@ def downloadDescription(link, contador):
 
 # %%
 def descarga(item, contador):
-    ydl_opts = {}
+    ydl_opts = {
+        'outtmpl': 'c:/Users/{username}/Desktop/Videos/%(title)s-%(id)s.%(ext)s'.format(username=username),
+        }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([item])
     
