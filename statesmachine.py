@@ -207,23 +207,23 @@ def buttons():
     centro_x = (ventana.winfo_width()/2)
     # menssageOrButtonCreate()
     boton3 = Button(ventana, text="Cargar links", command=readAndListLinks, font="Verdana",
-                    background="dodger blue", activebackground="#A0D1FC", bd=10, width=14)
+                    background="#FFFFFF", activebackground="#A0D1FC", bd=10, width=14)
     # centro_x-70 es por que el ancho del botón es 14 (14x5=70)
     boton3.place(x=(centro_x-280), y=80)
     boton4 = Button(ventana, text="Comenzar descarga", command=runDowload, font="Verdana",
-                    background="forest green", activebackground="#A0D1FC", bd=10, width=18)
+                    background="#FFFFFF", activebackground="#A0D1FC", bd=10, width=18)
     # centro_x-90 es por que el ancho del botón es 18 (18x5=90)
     boton4.place(x=(centro_x-280), y=140)
     boton5 = Button(ventana, text="Info. Links cargados", command=showLinksDownloads, font="Verdana",
-                    background="deep pink", activebackground="#A0D1FC", bd=10, width=18)
+                    background="#FFFFFF", activebackground="#A0D1FC", bd=10, width=18)
     # centro_x-90 es por que el ancho del botón es 18 (18x5=90)
     boton5.place(x=(centro_x-280), y=200)
     boton1 = Button(ventana, text="Ayuda", command=getHelp, font="Verdana",
-                    background="coral", activebackground="#A0D1FC", bd=10, width=12)
+                    background="#FFFFFF", activebackground="#A0D1FC", bd=10, width=12)
     # centro_x-60 es por que el ancho del botón es 12 (12x5=60)
     boton1.place(x=(centro_x-280), y=260)
     boton = Button(ventana, text="Salir", command=close_window, font="Verdana",
-                   background="red", activebackground="#EF9F72", relief="raised", borderwidth=7, width=6)
+                   background="#FFFFFF", activebackground="#EF9F72", relief="raised", borderwidth=7, width=6)
     # centro_x-30 es por que el ancho del botón es 6 (6x5=30)
     boton.place(x=(centro_x-280), y=320)
 
