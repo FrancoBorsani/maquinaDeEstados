@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['statesmachine.py'],
-             pathex=['C:\\Users\\MeDicenTecno\\Desktop\\tp finalizado\\maquinaDeEstados'],
+             pathex=['C:\\Users\\MeDicenTecno\\Desktop\\p\\maquinaDeEstados'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -19,19 +19,15 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
           [],
-          exclude_binaries=True,
           name='statesmachine',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
+          upx_exclude=[],
+          runtime_tmpdir=None,
           console=True )
-coll = COLLECT(exe,
-               a.binaries,
-               a.zipfiles,
-               a.datas,
-               strip=False,
-               upx=True,
-               upx_exclude=[],
-               name='statesmachine')
