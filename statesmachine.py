@@ -1,12 +1,6 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
-# %%
+# Máquina de estados
 
-
-# %% [markdown]
-# # Máquina de estados
-
-# %%
+# Libs
 import time
 import requests
 import os
@@ -25,9 +19,8 @@ ordenDescargas = list()
 listPeso = []
 directorio = "C:/Users/"+username+"/Desktop/Videos"
 
-
-# %%
-# CREACIÓN DE CARPETA:
+# %% -- Crea una nueva celda
+# CREACIÓN DE UN DIRECTORIO:
 def createFolder():
     try:
         os.mkdir(directorio)
@@ -40,6 +33,7 @@ def createFolder():
 
 
 # %%
+# Descarga la descripción del video
 def downloadDescription(link, contador):
     ydl_opts = {}
     listaInfo=list()
@@ -56,6 +50,7 @@ def downloadDescription(link, contador):
 
 
 # %%
+# Realiza la descarga del video y la guarda en el directorio asignado previamente
 def descarga(item, contador):
     ydl_opts = {
         'outtmpl': 'c:/Users/{username}/Desktop/Videos/%(title)s-%(id)s.%(ext)s'.format(username=username),
@@ -63,18 +58,15 @@ def descarga(item, contador):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([item])
     
-    #video.download("C:/Users/"+username+"/Desktop/Videos")
-    
     time.sleep(2)
     return True
 
 
 # %%
+# Lee el archivo cargado desde la interfaz
 def readAndListLinks():
-   # archivo = open("/links.txt","r")
-    Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
-    # show an "Open" dialog box and return the path to the selected file
-    archivo = askopenfile()
+    Tk().withdraw()
+    archivo = askopenfile() # Pide al usuario un archivo
     for linea in archivo:
         listaLiinks.append(linea)
 
@@ -82,6 +74,7 @@ def readAndListLinks():
 
 
 # %%
+# Procesamiento de peticiones para descargar los videos junto con la descripción de cada uno
 def runDowload():
 
     contador = 0
@@ -110,14 +103,14 @@ def showLinksDownloads():
 
 
 # %%
-
-
+# Evento de cierre de interfaz
 def close_window():
     if messagebox.askokcancel("Salir", "Va a salir de la aplicación"):
         ventana.destroy()
 
 
 # %%
+# Evento de instrucciones sobre el uso de la interfaz
 def instructions():
     texto1 = "1- Si aun no creó la carpeta, Pulse el boton \"Crear carpeta de descarga\" \n        (al hacer esto se creará una carpeta llamada videos en su escritorio)        \n\n"
     texto2 = "2- Pulse el boton \"Cargar links\"  (con esto se copiarán los links del txt)  \n\n"
@@ -126,7 +119,7 @@ def instructions():
     texto5 = "ACTUALIZACION: la creacion de la carpeta de descargas se \n valida al momento de iniciar la descarga"
     return texto1+texto2+texto3+texto4+texto5
 
-
+#Muestra información con respecto a los links cargados
 def links():
     text = ""
 
@@ -137,8 +130,7 @@ def links():
     return text
 
 # %%
-
-
+# Configuración de la interfaz
 def getHelp():
     ventana = Tk()
     ventana.geometry("700x400")
@@ -188,7 +180,7 @@ def getLinks():
     ventana.mainloop()
 
 # %%
-
+# Comprueba el estado de creación del directorio de destino de las descargas
 
 def menssageOrButtonCreate():
     if os.path.isdir(directorio) == False:  # si NO se creo la carpeta
@@ -202,10 +194,10 @@ def menssageOrButtonCreate():
 
 
 # %%
+# Botones / opciones del programa
 def buttons():
     ventana.update()
     centro_x = (ventana.winfo_width()/2)
-    # menssageOrButtonCreate()
     boton3 = Button(ventana, text="Cargar links", command=readAndListLinks, font="Verdana",
                     background="#FFFFFF", activebackground="#A0D1FC", bd=10, width=14)
     # centro_x-70 es por que el ancho del botón es 14 (14x5=70)
@@ -229,6 +221,7 @@ def buttons():
 
 
 # %%
+# Corre la el programa y su interfaz
 scriptDir = os.getcwd()
 os.chdir(scriptDir)
 ventana = Tk()  # crea el objeto
